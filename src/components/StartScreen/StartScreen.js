@@ -20,11 +20,21 @@ export default () => {
         return(
             <div>
                 <div className="start-info">
-                    <p><strong>LOAD:</strong> WAV/MP3 files</p>
+                    <p><strong>LOAD:</strong> WAV/MP3 samples</p>
+                    <p 
+                    style={{
+                        fontFamily: "monospace",
+                        fontSize: "10px",
+                        marginBottom: "35px"
+                    }}>metamask login only</p>
                 </div>
                 <button 
                 className="btn"
-                style={{color:"#fff"}}
+                style={{
+                    color:"#fff",
+                    background: "#818181",
+                    padding: "10px"
+                }}
                 onClick={() => { setCTX(context)}}
                 >START</button>
             </div>
@@ -37,10 +47,10 @@ export default () => {
         return null
     }
     return (
-        <div className="start-wrapper" style={{backgroundColor: "#fff", color: Colors.black,position:"absolute", width:"250px", height:"250px",left:"0",top:"0",bottom:"0",right:"0",margin:"auto"}}>
+        <div className="start-wrapper" style={{color: Colors.white,position:"absolute", width:"250px", height:"250px",left:"0",top:"0",bottom:"0",right:"0",margin:"auto"}}>
         <div className="content-container">
             <div>
-            <h1>SESSIONS</h1>
+            <h1 style={{fontFamily:"Zombie"}}>SESSIONS</h1>
             {displayContent()}
             </div>
         </div>            

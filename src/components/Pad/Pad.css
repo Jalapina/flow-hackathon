@@ -2,6 +2,7 @@
     box-sizing: border-box;
     width: 21%;
     padding: 1vh 1vw 9vh 1vw;
+    height: 105px;
     font-family: 'Orbitron', sans-serif;
     letter-spacing: 0.03em;
     border-radius: 5%;
@@ -19,6 +20,8 @@
 }
 
 .pad-text{
+    margin-top: 20px;
+    position: absolute;
     -ms-user-select: none; /* Internet Explorer */
     -khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
     -webkit-user-select: none; /* Chrome, Safari, and Opera */
@@ -29,6 +32,10 @@
     .pad{
         display: block;
         width: 95%;
+    }    
+    .pad-text{
+        top: 30px;
+        position: relative;
     }    
 
 }    

@@ -41,7 +41,7 @@ export default (props) => {
         id={props.id}
         style={{
             background: isLoaded ? currentPad.color: Colors.black ,
-            color: Colors.white, 
+            color: isLoaded ? "#000": Colors.white, 
             transition: "0.5s linear", 
             width: ""
         }}

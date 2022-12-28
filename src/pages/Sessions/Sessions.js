@@ -33,7 +33,7 @@ const Sessions = () =>{
         const count = locationPath == "sessions" ? 20 : 6;
         const timeStamp = firebase.firestore.Timestamp.now();
 
-        const snapshot = db.firestore().collection('session').limit(count).where("updatedAt","<",timeStamp).get()
+        const snapshot = db.firestore().collection('session').limit(count).orderBy("createdAt", "desc").get()
         
         const sessionsData = snapshot.then(snapshot => {
             const sessions = snapshot.docs.map(doc => ({
@@ -116,7 +116,7 @@ const Sessions = () =>{
                                 </div>
                                 <Link to={"/session/"+session.id} style={{textDecorationColor:"cyan",fontFamily:"Beary",order:"1"}}><h3 style={{fontSize:"3em"}}>{session.name}</h3></Link>
                                 <Link to={"/profile/"+session.address} style={{textDecoration:"none",fontSize:"1.2em"}}><p style={{display:"block",fontFamily:"'Beary'",order:"2"}} className="specs">ARTIST: {session.artist?session.artist:sliptAddressText(session.address)}</p></Link>
-                                <p style={{display:"block",fontFamily:"'Beary'",order:"3"}} className="specs">TEMPO: 77</p>
+                                <p style={{display:"block",fontFamily:"'Beary'",order:"3"}} className="specs">TEMPO: {session.tempo}</p>
                                 
                                 {isLoading?
             
@@ -140,7 +140,7 @@ const Sessions = () =>{
                                 <Link to={"/session/"+session.id}><img style={{width:"100%"}} src={session.sessionArt? session.sessionArt:placeholder} /></Link>
                             </div>
 
-                            {rendercontent(key)}
+                            {/* {rendercontent(key)} */}
 
                         </div>
                     ))
