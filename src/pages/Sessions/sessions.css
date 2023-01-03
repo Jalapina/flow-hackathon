@@ -6,9 +6,10 @@
 }
 .sessionsItemArt{
     width: 175px;
+    height: 175px;
     position: absolute;
-    right: 30px;
-    bottom: 245px;
+    right: 40px;
+    bottom: 200px;
 }
 .sessionHomeContainer a{
     order: 1;
@@ -33,7 +34,7 @@
     margin-bottom: 100px;
 }
 .backgroundSpec{
-    background: rgb(124 0 255);
+    background: rgb(48 48 48);
     /* background: url("../placeholder.png"); */
     position: absolute;
     width: 80%;
@@ -43,16 +44,15 @@
     bottom: 0px;
     z-index: -2;
     margin: auto;
-    transform: skewX(169deg);
 }
 .sessionHomeContainer{
     margin: 15px auto;
     width: 40%;
+    min-width: 475px;
     display: flex;
     position: relative;
     justify-content: flex-end;
     flex-direction: column;  
-    border-bottom: 2px solid;
 }
 .sessionsContainer{
     display: flex;

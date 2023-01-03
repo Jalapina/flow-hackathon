@@ -40,9 +40,10 @@ export default (props) => {
         className="pad" 
         id={props.id}
         style={{
-            background: isLoaded ? currentPad.color: Colors.black ,
-            color: isLoaded ? "#000": Colors.white, 
-            transition: "0.5s linear", 
+            // background: isLoaded ? currentPad.color: Colors.black,
+            color: isLoaded ? "#000" : Colors.white,
+            fontSize: isLoaded ? "1.3em" : "1em",
+            transition: "0.5s linear",
             width: ""
         }}
         onClick={() => {handleMouseClick(props.id)}}
