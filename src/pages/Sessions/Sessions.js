@@ -122,9 +122,9 @@ const Sessions = () =>{
             
                                     "LOADING...":            
                                     
-                                    <div style={{display:"inline-block",order:"4",textAlign:"left",width:"50%"}} >
+                                    <div style={{display:"inline-block",order:"4",textAlign:"left",width:"100%"}} >
                                                                         
-                                        <p style={{fontFamily:"Beary", fontSize:"1em",display:"inline-block"}}>
+                                        <p style={{fontFamily:"Beary",marginLeft:"90px", fontSize:"1em",display:"inline-block"}}>
                                             NEEDS: 
                                         </p>
 

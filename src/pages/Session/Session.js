@@ -31,8 +31,7 @@ const Session = () =>{
     let sessionID = location.pathname.split("/").pop();
     const [user, setUser] = useCookies(['user']);
     const [isOwner, setIsOwner] = useState(false);
-    console.log(isLoading);
-
+    
     const getSessionData = async() => {
 
         const response = db.firestore().collection('session').doc(sessionID).get()
@@ -91,6 +90,15 @@ const Session = () =>{
     useEffect(() => { 
         if(context.gridPadsArr.length < 1 && isLoading) generateGrid();
     }, [session,isLoading]);
+    
+    // useEffect(() => { 
+    //     return () => {
+    //         // Clean up the audio player
+    //         const Player = context.gridPadsArr.player;
+    //         Player.dispose();
+    //         console.log(Player)
+    //       };
+    // },[]);
 
     const renderPad = (item) => {
         let backgroundColor = Colors.black

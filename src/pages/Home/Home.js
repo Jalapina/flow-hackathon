@@ -88,7 +88,7 @@ const Home = () =>{
                 <div className="aboutTextHomeContainer">
                     <h2>Find that sound in your head</h2>
                     <p>
-                        Collaborate with others online, looking for some vocals | a bass or some cool drums for your track? start a session, upload your stems (mp3/wav) , and share with others to help you finish your track or create whatever!
+                        Collaborate with others online, looking for some vocals | a bass or some cool drums for your track? start a session, upload your stems (mp3/wav) , and share with others to help you finish your track or create &#9632;&#9632;&#9632;&#9632;&#9632;!
                     </p>
                 </div>
 
