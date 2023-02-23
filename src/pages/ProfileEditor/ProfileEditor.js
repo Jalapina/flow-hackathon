@@ -33,11 +33,6 @@ const ProfileEditor = () =>{
         return address.split("").splice(-10);
     }
     
-    const initialState = {
-        status: "idle",
-        user: null,
-        error: null
-    };
 
     const handleImageUpload = () => {
         if (imageFile) {
@@ -93,7 +88,7 @@ const ProfileEditor = () =>{
     return(
         <div className="profile">
         
-        <Header title={sliptAddressText(locationPath)}/>
+        <Header title={"Sessions"}/>
 
             <div className="container">
                 <div className="leftSideBar">
@@ -113,10 +108,12 @@ const ProfileEditor = () =>{
                             <h2>{userData ? userData.artistName: "Loading..."}</h2>
                             <h4>Sessions: {sessions?sessions.length:"None"}</h4>
                             <h4>collabs: 7</h4>
-                            {isOwner? <button onClick={signOut}>sign out</button>:""}
                         </div>
                 </div>
                 <div className="mainContentArea">
+                    <h2>
+                        {sliptAddressText(locationPath)}
+                    </h2>
                     <div className='bio'>
                         Welcome to the website. If you're here, you're likely looking to find random words. Random Word Generator is the perfect tool to help you do this. While this tool isn't a word creator, it is a word generator that will generate random words for a variety of activities or uses. 
                     </div>

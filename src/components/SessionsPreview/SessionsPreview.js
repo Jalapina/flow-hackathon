@@ -20,7 +20,6 @@ const SessionsPreview = () =>{
     let location =  useLocation();
     let locationPath = location.pathname.split("/",3).pop();
     const [isLoading, setIsLoading] = useState(true);
-    console.log(locationPath)
     const sliptAddressText = (address) =>{
         return address.split("").splice(-10);
     }

@@ -39,6 +39,7 @@
     /* min-width: 150px; */
 }
 .sessionOptions{
+    font-family: Simple;
     order: 2;
     width: 65%;
     display: flex;

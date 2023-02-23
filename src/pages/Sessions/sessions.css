@@ -18,9 +18,13 @@
     font-size: 5em;
     text-align: left;
 }
+.mantra{
+    display: inline-block;
+    margin: 5px;
+}
 .sessionSpecInfo{
     display: flex;
-    background: rgb(22 22 26);
+    background: rgb(165 61 219);
     position: relative;
     align-items: flex-start;
     flex-direction: column;

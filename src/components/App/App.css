@@ -10,6 +10,10 @@
     font-family: Street;
     src: url("../../assets/fonts/street.otf")
 }
+@font-face{
+    font-family: Simple;
+    src: url("../../assets/fonts/simple.ttf")
+}
 .app-wrapper{
     background: #191919;  /* fallback for old browsers */
 }

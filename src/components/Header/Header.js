@@ -19,11 +19,12 @@ export default ({title,button}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [loginOrSignIn, setLoginOrSignIn]=useState(false);
     const { user: loggedUser, status, error } = useAuthState();
-
+    console.log(cookies["user"])
     return (
     <div className="header">
         <div className="artBackground">
         </div>
+        
         <div className="logoWrapper">
             <h1 style={{fontFamily:"Zombie !important"}} >{title}</h1>
         </div>
@@ -33,7 +34,7 @@ export default ({title,button}) => {
             <div  className="buttonWrapepr">
             
                 <div>
-                    {cookies["user"] != undefined?(
+                    {cookies["user"].displayName != undefined?(
                     <div>
                         <Link to={"/profile/"+cookies.user.displayName}>
                             <img style={{width:"3em", marginRight:"50px"}} src={profileButton}/>
@@ -54,10 +55,10 @@ export default ({title,button}) => {
                 <Modal
                     isOpen={isOpen}
                     onHide={() => setIsOpen(!isOpen)}
-                    headerCaption={cookies["user"]== undefined? "Sing In":"Create Session"}
+                    headerCaption={cookies["user"].displayName == undefined? "Sing In":"Create Session"}
                 >
 
-                    {cookies["user"] == undefined?(
+                    {cookies["user"].displayName == undefined?(
 
                         <Login/>
                         

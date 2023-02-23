@@ -183,7 +183,7 @@ const Session = () =>{
     return(
         <div className="sessionComponent">
 
-            <Header title={isLoading? "Loading...":session.artistName} button={false}/>
+            <Header title={"Sessions"} button={false}/>
 
             <div className="sessionContentTop">
 

@@ -53,6 +53,7 @@
   .metamaskSignIn button{
     background: black;
     border: 0px;
+    color: #fff;
     font-family: 'Beary';
     font-size: 1em;
 }

@@ -33,7 +33,8 @@ export default () => {
                 style={{
                     color:"#fff",
                     background: "#818181",
-                    padding: "10px"
+                    padding: "10px",
+                    margin: "auto"
                 }}
                 onClick={() => { setCTX(context)}}
                 >START</button>

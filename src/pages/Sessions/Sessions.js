@@ -102,9 +102,15 @@ const Sessions = () =>{
 
     return(
         <div className="sessionsComponent">
-            <h1 style={{fontFamily:"Zombie",fontSize:"5em",transform: "rotate(7deg)",padding:"50px 0px 50px 0px"}}>
+            <h1 style={{fontFamily:"Zombie",fontSize:"5em",transform: "rotate(7deg)",padding:"50px 0px 0px 0px"}}>
                 JUMP IN
             </h1>
+            <div style={{marginBottom:"90px", fontFamily:"Beary"}}> 
+                <p className="mantra">CREATE</p>
+                <p className="mantra">COLLAB</p>
+                <p className="mantra">ACTUALIZE </p>
+                <p className="mantra">DISCOVER </p>
+            </div>
 
             <div className="sessionsContainer">
                 {sessions?(
@@ -114,22 +120,22 @@ const Sessions = () =>{
                             <div className="sessionSpecInfo">
                                 <div className="backgroundSpec">
                                 </div>
-                                <Link to={"/session/"+session.id} style={{width:"50%",fontFamily:"Beary",order:"1"}}><h3 style={{fontSize:"3em"}}>{session.name}</h3></Link>
-                                <Link to={"/profile/"+session.address} style={{textDecoration:"none",fontSize:"1.2em"}}><p style={{display:"block",fontFamily:"'Beary'",order:"2"}} className="specs">ARTIST: {session.artist?session.artist:sliptAddressText(session.address)}</p></Link>
-                                <p style={{display:"block",fontFamily:"'Beary'",order:"3"}} className="specs">TEMPO: {session.tempo}</p>
+                                <Link to={"/session/"+session.id} style={{width:"50%",fontFamily:"Simple",order:"1"}}><h3 style={{fontSize:"3em"}}>{session.name}</h3></Link>
+                                <Link to={"/profile/"+session.address} style={{textDecoration:"none",fontSize:"1.2em",fontFamily:"Simple"}}><p style={{display:"block",order:"2"}} className="specs">ARTIST: {session.artist?session.artist:sliptAddressText(session.address)}</p></Link>
+                                <p style={{display:"block",fontFamily:"'Beary'",order:"3",fontFamily:"Simple"}} className="specs">TEMPO: {session.tempo}</p>
                                 
                                 {isLoading?
             
                                     "LOADING...":            
                                     
-                                    <div style={{display:"inline-block",order:"4",textAlign:"left",width:"100%"}} >
+                                    <div style={{display:"inline-block",order:"4",fontFamily:"Simple",textAlign:"left",width:"100%"}} >
                                                                         
-                                        <p style={{fontFamily:"Beary",marginLeft:"90px", fontSize:"1em",display:"inline-block"}}>
+                                        <p style={{marginLeft:"0px", fontSize:"1em",display:"inline-block"}}>
                                             NEEDS: 
                                         </p>
 
                                         {session.needs.length>0?(
-                                            session.needs.map(needItem =><p style={{display:"inline-block",margin:"10px",padding:"10px",background:"#5b00ba"}}>{needItem}</p> )
+                                            session.needs.map(needItem =><p style={{display:"inline-block",margin:"10px",padding:"10px",background:"#000"}}>{needItem}</p> )
                                         ):" N/A"}
                                     
                                     </div>

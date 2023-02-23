@@ -20,6 +20,7 @@
 }
 .leftSideBar {
   padding-top: 40px;
+  font-family: "Simple";
 }
 
 .profilePicture {
@@ -30,11 +31,11 @@
 
 .mainContentArea {
   padding: 40px;
-  max-width: 850px;
+  width: 100%;
 }
 
 .bio {
-  
+  font-family: simple;
   padding-bottom: 40px;
 
 }
@@ -77,6 +78,7 @@
   .container {
     flex-direction: column;
     align-items: center;
+    align-content: space-around;
   }
   .specs button{
     margin-top: 35px;
