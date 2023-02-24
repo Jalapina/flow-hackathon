@@ -67,7 +67,7 @@ const ProfileEditor = () =>{
               ...doc.data(),
             }));
 
-            setIsOwner(userJSON[0].address == user.user.displayName? true:false)
+            setIsOwner(userJSON[0].address == user.user.addr? true:false)
                 
             setUserData(userJSON[0]);
                 

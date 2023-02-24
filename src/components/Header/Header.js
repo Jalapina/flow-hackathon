@@ -34,9 +34,9 @@ export default ({title,button}) => {
             <div  className="buttonWrapepr">
             
                 <div>
-                    {cookies["user"].displayName != undefined?(
+                    {cookies["user"].addr != undefined?(
                     <div>
-                        <Link to={"/profile/"+cookies.user.displayName}>
+                        <Link to={"/profile/"+cookies["user"].addr}>
                             <img style={{width:"3em", marginRight:"50px"}} src={profileButton}/>
                         </Link>
                         <div style={{display:"inline-block"}}  onClick={() => setIsOpen(!isOpen)}>
@@ -55,10 +55,10 @@ export default ({title,button}) => {
                 <Modal
                     isOpen={isOpen}
                     onHide={() => setIsOpen(!isOpen)}
-                    headerCaption={cookies["user"].displayName == undefined? "Sing In":"Create Session"}
+                    headerCaption={cookies["user"].addr == undefined? "Sing In":"Create Session"}
                 >
 
-                    {cookies["user"].displayName == undefined?(
+                    {cookies["user"].addr == undefined?(
 
                         <Login/>
                         

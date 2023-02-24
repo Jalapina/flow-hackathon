@@ -4,6 +4,7 @@ import { useOutletContext } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {db} from '../../functions/firebase';
 import { useCookies } from 'react-cookie';
+import * as fcl from "@onflow/fcl"
 
 import "./Settings.css"
 
@@ -36,7 +37,7 @@ const Settings = () => {
   const signOut = () => {
     dispatch(initialState);
     removeCookie("user",{path:'/'});
-    console.log(user)
+    fcl.currentUser.unauthenticate();
     navigate(`/`);        
 }
 
