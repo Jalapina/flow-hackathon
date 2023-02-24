@@ -4,7 +4,7 @@ import Header from '../Header/Header';
 import Home from '../../pages/Home/Home';
 import midiMap from '../../Config/midiMap';
 import './SamplerGrid.css';
-import cryptoLogosPolygon from "./cryptoLogosPolygon.png"
+import cryptoLogosPolygon from "./flow-logo.png"
 
 const SamplerGrid = () => {
     

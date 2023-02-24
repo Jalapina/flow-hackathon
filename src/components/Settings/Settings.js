@@ -36,7 +36,7 @@ const Settings = () => {
 
   const signOut = () => {
     dispatch(initialState);
-    removeCookie("user",{path:'/'});
+    removeCookie("user",undefined);
     fcl.currentUser.unauthenticate();
     navigate(`/`);        
 }
@@ -58,7 +58,7 @@ const Settings = () => {
         update
       </button>
 
-      {isOwner? <button style={{display:"inline-block"}} onClick={signOut}>sign out</button>:""}
+      <button style={{display:"inline-block"}} onClick={signOut}>sign out</button>
 
     </div>
   );

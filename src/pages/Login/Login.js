@@ -73,23 +73,31 @@ const Login = () =>{
       
   }
 
+
+  const Auth =  async (currentUser) => {
+    const user = userExist(currentUser.addr);    
+    console.log("The Current User", currentUser)
+
+    dispatch({
+      status: "resolved",
+      user: currentUser,
+      error: null
+    });
+
+    setCookie('user',currentUser);
+
+    console.log(currentUser);
+  }
+
   const logIn =  async () => {
     // log in through Blocto
     fcl.authenticate();
+    
     const unsubscribe = fcl.currentUser.subscribe(currentUser => {
       
-      const user = userExist(currentUser.addr);
-
-      console.log("The Current User", currentUser)
-      dispatch({
-        status: "resolved",
-        user: currentUser,
-        error: null
-      });
-      setCookie('user',currentUser);
-    })
-    console.log(currentUser);
-
+        currentUser.addr ? Auth(currentUser) : "";
+    
+    });
     
   }
 
@@ -115,21 +123,21 @@ const Login = () =>{
           dispatch({ status: "rejected", error });
         }
         
-    }
+  }
     
-    return(
-          <div className="loginContainer">
+  return(
+        <div className="loginContainer">
 
-              <div className="signInContainer">
-                <div className="metamaskSignIn">
-              <button style={{width:"100%"}} onClick={() => logIn()}>FLOW SIGN IN</button>
-                </div>
-                
+            <div className="signInContainer">
+              <div className="metamaskSignIn">
+            <button style={{width:"100%"}} onClick={() => logIn()}>FLOW SIGN IN</button>
               </div>
-        
-        </div>
+              
+            </div>
+      
+      </div>
 
-    )
+  )
 }
     
 

@@ -19,7 +19,9 @@ export default ({title,button}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [loginOrSignIn, setLoginOrSignIn]=useState(false);
     const { user: loggedUser, status, error } = useAuthState();
+    
     console.log(cookies["user"])
+
     return (
     <div className="header">
         <div className="artBackground">
@@ -34,8 +36,13 @@ export default ({title,button}) => {
             <div  className="buttonWrapepr">
             
                 <div>
-                    {cookies["user"].addr != undefined?(
-                    <div>
+                    {cookies["user"] == undefined || cookies["user"] == "undefined"?(
+
+                        <div style={{display:"inline-block"}}  onClick={() => setIsOpen(!isOpen)}>
+                            <img style={{width:"3em"}} src={profileButton}/>
+                        </div>
+                    ):
+                     <div>
                         <Link to={"/profile/"+cookies["user"].addr}>
                             <img style={{width:"3em", marginRight:"50px"}} src={profileButton}/>
                         </Link>
@@ -43,11 +50,7 @@ export default ({title,button}) => {
                             <img className="createButton" src={createButton}/>
                         </div>
                     </div>
-         
-                    ):
-                    <div style={{display:"inline-block"}}  onClick={() => setIsOpen(!isOpen)}>
-                        <img style={{width:"3em"}} src={profileButton}/>
-                    </div>
+        
                     }
                 </div>
 
@@ -55,10 +58,10 @@ export default ({title,button}) => {
                 <Modal
                     isOpen={isOpen}
                     onHide={() => setIsOpen(!isOpen)}
-                    headerCaption={cookies["user"].addr == undefined? "Sing In":"Create Session"}
+                    headerCaption={cookies["user"] == undefined || cookies["user"] == "undefined" ? "Sing In":"Create Session"}
                 >
 
-                    {cookies["user"].addr == undefined?(
+                    {cookies["user"] == undefined || cookies["user"] == "undefined"?(
 
                         <Login/>
                         
