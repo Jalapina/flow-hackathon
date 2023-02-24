@@ -52,6 +52,7 @@ export default (props) => {
         onTouchEnd={(e) => {handleTouchEnd(props.id, e)}}
         >
             <span className="pad-text">{props.name}</span>
+
     </button>
 
 }

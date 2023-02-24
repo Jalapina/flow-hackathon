@@ -1,5 +1,6 @@
 import React, {useState,useContext,useEffect} from 'react';
 import { useOutletContext } from "react-router-dom";
+import useImageColor from 'use-image-color'
 import Colors from '../../Config/ColorScheme';
 import midiMap from '../../Config/midiMap';
 import Pad from '../../components/Pad/Pad';
@@ -36,10 +37,12 @@ const Sessions = () =>{
         const snapshot = db.firestore().collection('session').limit(count).orderBy("createdAt", "desc").get()
         
         const sessionsData = snapshot.then(snapshot => {
+
             const sessions = snapshot.docs.map(doc => ({
                 id: doc.id,
               ...doc.data(),
             }));
+
         setSessions(sessions);
         setIsLoading(false)
         context.dispatch({type: types.UPDATE_SOURCES, payload: {sessions}});
