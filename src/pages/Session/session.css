@@ -18,21 +18,21 @@
     padding: 10px 0px 10px 0px;
     margin: 2px;
 }   
+
 .grid{
     display: inline-block;
-}
-.grid{
     width: 100%;
     order: 2;
     text-align: right;
+    background: #030303;
 }
 .sessionContentTop{
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
-    margin: 50px 0px 50px 0px
-    /* align-items: center;     */
-    /* height: 450px; */
+    margin: 50px 0px 50px 0px /* align-items: center; */ /* height: 450px; */;
+    justify-content: center;
+    flex-direction: row-reverse;
 }
 .sessionArt img{
     width: 250px;
@@ -107,14 +107,22 @@
     .sessionOptions,.sessionSpecs{
         flex-direction: column;
     }
+    .sessionSpecs p {
+        display: block;
+    }
     .sessionOptions{
-        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
     }
     .sessionArt{
         width: 100%;
         max-width: 250px;
         margin: 0px 0px 35px 0px;
     }
-    
+    .sessionContentTop{
+        flex-direction: column;
+        align-content: space-around;
+    }
     
 }    

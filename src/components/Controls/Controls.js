@@ -197,7 +197,7 @@ const Controls = (props) => {
     return (
         <div className="controls-wrapper">
 
-            <p style={{fontFamily: 'Beary', fontSize:"2em"}}>
+            <p style={{fontFamily: 'Simple', fontSize:"2em"}}>
                 loop {currentPad ? currentPad.id+1:""}
             </p>
 

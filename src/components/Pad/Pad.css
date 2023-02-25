@@ -33,7 +33,7 @@ button:active{
 
 @media (max-width: 600px) {
     .pad{
-        display: block;
-        width: 95%;
+        /* display: block; */
+        width: 45%;
     }    
 }    
