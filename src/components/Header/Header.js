@@ -19,8 +19,6 @@ export default ({title,button}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [loginOrSignIn, setLoginOrSignIn]=useState(false);
     const { user: loggedUser, status, error } = useAuthState();
-    
-    console.log(cookies["user"])
 
     return (
     <div className="header">
