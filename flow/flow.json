@@ -1,0 +1,27 @@
+{
+	"contracts": {
+		"Hellowor1d": "./HelloWorld.cdc"
+	},
+	"networks": {
+		"emulator": "127.0.0.1:3569",
+		"mainnet": "access.mainnet.nodes.onflow.org:9000",
+		"testnet": "access.devnet.nodes.onflow.org:9000"
+	},
+	"accounts": {
+		"emulator-account": {
+			"address": "0x7f7cc8a209e4d2d0",
+			"key": {
+				"type": "file",
+				"location": "jalapina.pkey"
+			}
+		}
+	},
+	"deployments": {
+		"testnet": {
+			"emulator-account":
+			[
+				"Hellowor1d"
+			]
+		}
+	}
+}
