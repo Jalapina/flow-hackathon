@@ -118,7 +118,7 @@ const Session = () =>{
     }   
 
     const rendercontent = () => {
-        if(!context.editMode) return <div style={{maxWidth: "700px",margin: "auto"}}>{gridArr.map((item) => { return renderPad(item) })}</div>
+        if(!context.editMode) return <div style={{maxWidth: "700px",margin: "auto",textAlign:"center"}}>{gridArr.map((item) => { return renderPad(item) })}</div>
         return <PadEditor />
     }
     const testForTouchDevice = () => {
@@ -274,7 +274,7 @@ const Session = () =>{
                 {isLoading? "" : <Hud sessionOwner={session.address} setIsLoading={setIsLoading} isMinted={session.isMinted} />}
 
                 {user.user && session ?(
-                    user.user.displayName == session.address && !session.isMinted ? <button className="mintButton"  onClick={handleMint}>mint</button>:""
+                    user.user.addr == session.address && !session.isMinted ? <button className="mintButton"  onClick={handleMint}>mint</button>:""
                 ):""
                 }
                 {isLoading ? "LOADING...." : rendercontent()}

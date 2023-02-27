@@ -46,7 +46,7 @@ export const uploadLoop = async (context,currentPad,sessionId, collabData,user,s
             tempo: collabData.tempo? collabData.tempo : null,
             key: collabData.key? collabData.key : null,
             padId: currentPad.id,
-            artist: user.user.displayName,
+            artist: user.user.addr,
             padColor: "#F2EDEA",
             sampledOn: sessionDocRef.id,
             createdAt : firebase.firestore.FieldValue.serverTimestamp(),
@@ -61,7 +61,7 @@ export const uploadLoop = async (context,currentPad,sessionId, collabData,user,s
             const session = db.firestore().collection("session").doc(sessionDocRef.id).update({
                 stems: arrayToUpdate,
                 updatedAt : firebase.firestore.FieldValue.serverTimestamp(),
-                collaborators: arrayUnion(user.user.displayName)
+                collaborators: arrayUnion(user.user.addr)
             });
             console.log(stemURL);
             setIsLoading(true);

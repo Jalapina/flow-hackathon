@@ -50,7 +50,7 @@ const Create = () =>{
                 name:  sessionState.sessionName,
                 sessionArt: sessionArtURL != null ? sessionArtURL:"",
                 artist: sessionState.sessionArtistName,
-                address:  cookies["user"].displayName,
+                address:  cookies["user"].addr,
                 description: sessionState.sessionDescription,
                 needs: sessionNeeds,
                 genre: genre,
@@ -97,90 +97,78 @@ const Create = () =>{
     
     return(
         <div className="Create">
-        <div className="container">
-            <form style={{width:"90%",margin:"auto",textAlign:"center"}} onSubmit={CreateSession}>
-                {sessionArt?(
-                    <img style={{width:"120px"}} src={sessionArt.url}/>
-                ):
-                    <div class="image-upload">
+            <div className="container">
+                <form style={{width:"90%",margin:"auto",textAlign:"center"}} onSubmit={CreateSession}>
+                    {sessionArt?(
+                        <img style={{width:"120px"}} src={sessionArt.url}/>
+                    ):
+                        <div class="image-upload">
+                            
+                            <label for="file-input">
+                                <img style={{width:"100px"}} src={imageUpload}/>
+                                <p style={{marginTop:"0px"}}>
+                                    session cover art
+                                </p>
+                            </label>
+                            
+                            <input id="file-input" accept="image/*" type="file" onChange={e=>{onFileHomeImageChange(e)}}/>
+                            
+                        </div>
+
+                    }
+                    <input type="text" className="ghost-input" value={sessionState.sessionName} placeholder="session title" onChange={(e)=> setSessionState({...sessionState, sessionName:e.currentTarget.value})} required/> 
+                    <textarea type="text" className="ghost-input" value={sessionState.sessionDescription} placeholder="description" onChange={(e)=> setSessionState({...sessionState, sessionDescription: e.currentTarget.value})}> </textarea>
+                    {/* <input type="text" className="ghost-input" value={sessionState.sessionArtistName} placeholder="Artist Name" onChange={(e)=> setSessionState({...sessionState, sessionArtistName:e.currentTarget.value})} required/>  */}
+                    <select onChange={handleGenreChange} className="ghost-input" > 
+                        <option value="⬇️ Select a Genre ⬇️">select a genre</option>
+                        {genresList.map((genre)=> <option key={genre.key} value={genre}>{genre}</option> )}
+                    </select>
+                <input type="text" className="ghost-input" value={sessionState.tempo} placeholder="tempo" onChange={(e)=> setSessionState({...sessionState,tempo:e.currentTarget.value})} /> 
+                    <div class="session-needs">
+
+                        <input type="text" style={{fontSize:"1.2em"}} className="ghost-input" placeholder="this session needs" value={need} onChange={(e)=>setNeed(e.target.value)} />
+
+                        <button 
+                        disabled={need.length<1?true:false}
+                        style={{
+                            background: "#4c08ff"
+                        }}
+                        className="ghost-input"
+                        onClick={onAddSessionNeed}>
+                            add 
+                        </button>
                         
-                        <label for="file-input">
-                            <img style={{width:"100px"}} src={imageUpload}/>
-                            <p style={{marginTop:"0px"}}>
-                                session cover art
-                            </p>
-                        </label>
-                        
-                        <input id="file-input" accept="image/*" type="file" onChange={e=>{onFileHomeImageChange(e)}}/>
-                         
                     </div>
 
-                }
-                <input type="text" className="ghost-input" value={sessionState.sessionName} placeholder="session title" onChange={(e)=> setSessionState({...sessionState, sessionName:e.currentTarget.value})} required/> 
-                <textarea type="text" className="ghost-input" value={sessionState.sessionDescription} placeholder="description" onChange={(e)=> setSessionState({...sessionState, sessionDescription: e.currentTarget.value})}> </textarea>
-                {/* <input type="text" className="ghost-input" value={sessionState.sessionArtistName} placeholder="Artist Name" onChange={(e)=> setSessionState({...sessionState, sessionArtistName:e.currentTarget.value})} required/>  */}
-                <select onChange={handleGenreChange} className="ghost-input" > 
-                    <option value="⬇️ Select a Genre ⬇️">select a genre</option>
-                    {genresList.map((genre)=> <option key={genre.key} value={genre}>{genre}</option> )}
-                </select>
-                <input type="text" className="ghost-input" value={sessionState.tempo} placeholder="tempo" onChange={(e)=> setSessionState({...sessionState,tempo:e.currentTarget.value})} /> 
-                <div class="session-needs">
 
-                    <input type="text" style={{fontSize:"1.2em"}} className="ghost-input" placeholder="this session needs" value={need} onChange={(e)=>setNeed(e.target.value)} />
+                    <div style={{display:"block",textAlign:"left"}}>
+                        {sessionNeeds.length>0 ? (
+                            sessionNeeds.map((need)=>
+                                <p
+                                    style={{
+                                        background: "#9871ff",
+                                        color: "black",
+                                        fontSize:"1em",
+                                        padding:"10px",
+                                        display:"inline-block",
+                                        margin:"5px"
+                                    }}
+                                >{need}</p>
+                            )
+                            ):""
+                        }
+                    </div>
 
-                    <button 
-                    disabled={need.length<1?true:false}
-                    style={{
-                        background: "#4c08ff"
-                    }}
-                    className="ghost-input"
-                    onClick={onAddSessionNeed}>
-                        add 
-                    </button>
-                    
-                </div>
+                    <input 
+                        style={{marginTop:"60px"}}
+                        disabled={isLoading || sessionState.sessionName.length == 0 ? true : false}
+                        type="submit"
+                        value="CREATE SESSION"
+                        className="ghost-button"
+                        />
 
-
-                <div style={{display:"block",textAlign:"left"}}>
-                    {sessionNeeds.length>0 ? (
-                        sessionNeeds.map((need)=>
-                            <p
-                                style={{
-                                    background: "#9871ff",
-                                    color: "black",
-                                    fontSize:"1em",
-                                    padding:"10px",
-                                    display:"inline-block",
-                                    margin:"5px"
-                                }}
-                            >{need}</p>
-                        )
-                        ):""
-                    }
-                </div>
-
-                <input 
-                    style={{marginTop:"60px"}}
-                    disabled={isLoading || sessionState.sessionName.length == 0 ? true : false}
-                    type="submit"
-                    value="CREATE SESSION"
-                    className="ghost-button"
-                    />
-                
-                {/* <button onClick={() => {sessionNeed('');
-                    sessionState.sessionNeeds.push({
-                    id: sessionNeedsIndex++,
-                    instrument: sessionNeed,
-                });
-                }}>Add</button>
-                <ul>
-                    {sessionState.sessionNeeds.map(needs => (
-                    <li key={needs.id}>{needs.instrument}</li>
-                    ))}
-            </ul> */}
-
-            </form>
-        </div>
+                </form>
+            </div>
         </div>
 
     )

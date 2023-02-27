@@ -183,7 +183,7 @@ const Controls = (props) => {
         // if(!user.hasOwnProperty()) return [];
         if(currentPad && !currentPad.source && user.user) return renderFileUpload();
         if(currentPad && currentPad.source && user.user){
-            if(user.user.displayName == props.props.sessionOwner) {
+            if(user.user.addr == props.props.sessionOwner) {
                 return <div><div onClick={() => toggleEditMode()}>{props.props.editToggleMode}</div></div>
             }
         }

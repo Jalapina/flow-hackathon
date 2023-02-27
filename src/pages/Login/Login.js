@@ -26,14 +26,13 @@ fcl.config({
 .put("accessNode.api", "https://access-testnet.onflow.org")
 .put("discovery.wallet", "https://fcl-discovery.onflow.org/testnet/authn")
 
-
 const Login = () =>{
 
   const { user: loggedUser, status, error } = useAuthState();
+  const dispatch = useAuthDispatch();
   const [user, setUser] = useState();
   const [cookies, setCookie] = useCookies(['user']);    
   const [isNewUser, setisNewUser] = useState(false);
-  const dispatch = useAuthDispatch();
   let navigate = useNavigate();
 
   const createNewUser = (userAddress) =>{
@@ -110,7 +109,7 @@ const Login = () =>{
 
           dispatch({ status: "pending" });
           result = await signInWithMoralisByEvm(moralisAuth);
-          const user = await userExist(result.credentials.user.displayName);
+          const user = await userExist(result.credentials.user.addr);
 
           dispatch({
             status: "resolved",
