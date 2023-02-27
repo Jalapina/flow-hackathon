@@ -1,5 +1,8 @@
 .controls-wrapper{
     text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: relative;
     bottom: 0;
     left: 0;
@@ -66,3 +69,8 @@
     -webkit-user-select: none; /* Chrome, Safari, and Opera */
     -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
 }
+@media (max-width: 600px) {
+    .controls-wrapper{
+        flex-direction: column;
+    }
+}    

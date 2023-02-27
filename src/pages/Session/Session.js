@@ -1,4 +1,6 @@
 import React, {useState,useContext,useEffect,useRef} from 'react';
+import * as fcl from "@onflow/fcl"
+import * as t from "@onflow/types"
 import {Context} from '../../contexts/SamplerContext';
 import * as types from '../../reducers/types';
 import GridPad from '../../contexts/Config/PadGrid';
@@ -18,6 +20,7 @@ import { ethers } from 'ethers';
 import { Web3Provider } from '@ethersproject/providers';
 import { useCookies } from 'react-cookie';
 import INITIAL_STATE from '../../contexts/Config/AudioInitialState';
+import {mintNFT} from "../../contracts/transactions/mint_nft";
 
 const Session = () =>{
 
@@ -143,40 +146,28 @@ const Session = () =>{
 
     }
 
-    const handleMint = async () =>{
-
-        if(window.ethereum){
+    const mint = async () =>{
+    
+        try {
             
-            let tokenPrice = ethers.BigNumber.from('10000000000000000');
-            const provider = new ethers.providers.Web3Provider(window.ethereum)
-            const signer = provider.getSigner();
-            
-            let feeData = await signer.getFeeData();
-
-            await provider.send('eth_requestAccounts', []); 
-
-            const contract = new ethers.Contract(
-                "0x24426a17f5DFCb9c65329776465Cf8c5e6D9DD80", //polygon smart contract address
-                sessionContract.abi,
-                signer,
-            );
-
-            try{
-                const response = await contract.createNFT("https://sessions-e4f78.web.app/session/"+sessionID,tokenPrice,{value: ethers.utils.parseEther("0.01"),gasLimit: 5000000});
-
-                const sessionResponse = db.firestore().collection("session").doc(sessionID).update({
-                    isMinted: true,
-                    mintData: {
-                        contractHash: response.to,
-                        mintHash: response.hash
-                    }
-                });
-
-                setSession({...session,minted:true});
-
-            }catch(e){console.log(e)}
+            const transactionId = await fcl.send([
+                fcl.transaction(mintNFT),
+                fcl.args([
+                    fcl.arg("https://sessions-e4f78.web.app/session/"+sessionID, t.String),
+                    fcl.arg("session", t.String)
+                ]),
+                fcl.payer(fcl.currentUser),
+                fcl.proposer(fcl.currentUser),
+                fcl.authorizations([fcl.currentUser]),
+                fcl.limit(9999),
+            ]).then(fcl.decode);
+        
+            console.log(transactionId);
+            return fcl.tx(transactionId).onceSealed();
+        } 
+        catch(error) {
+            console.log("Error uploading file:", error);
         }
-
     }
 
 
@@ -274,7 +265,7 @@ const Session = () =>{
                 {isLoading? "" : <Hud sessionOwner={session.address} setIsLoading={setIsLoading} isMinted={session.isMinted} />}
 
                 {user.user && session ?(
-                    user.user.addr == session.address && !session.isMinted ? <button className="mintButton"  onClick={handleMint}>mint</button>:""
+                    user.user.addr == session.address && !session.isMinted ? <button className="mintButton"  onClick={mint}>mint</button>:""
                 ):""
                 }
                 {isLoading ? "LOADING...." : rendercontent()}

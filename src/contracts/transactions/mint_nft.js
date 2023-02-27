@@ -1,7 +1,7 @@
 export const mintNFT = `
-import MyNFT from 0x40582f87fa3d66cb
+import MyNFT from 0x7f7cc8a209e4d2d0
 
-transaction(ipfsHash: String, name: String) {
+transaction() {
 
   prepare(acct: AuthAccount) {
     let collection = acct.borrow<&MyNFT.Collection>(from: /storage/MyNFTCollection)

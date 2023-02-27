@@ -14,6 +14,7 @@ import Sessions from "../../pages/Sessions/Sessions"
 import SessionsPreview from "../SessionsPreview/SessionsPreview"
 import Collabs from "../Collabs/Collabs"
 import Modal from "../Modal/Modal"
+import AudioPlayer from "../AudioPlayer/AudioPlayer"
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from "../Auth/auth-context";
 import { CookiesProvider } from 'react-cookie';
@@ -47,6 +48,7 @@ export default function App () {
                                 <Route path="sessions" element={<Sessions />} exact/>
                                 <Route path="*" element={<NotFoundPage />} />
                             </Routes>
+                            {/* <AudioPlayer /> */}
                         </div>
 
                 </AuthProvider>
