@@ -8,6 +8,7 @@ import soundwave from "../sound-wave.png";
 import pad from "../pad.png";
 import PurpleArrow from "./purple-arrow.png";
 import PinkArrow from "./pink-arrow.png";
+import Illustration from "./illustration-sessions.png";
 import GreenArrow from "./green-arrow.png";
 
 const Home = () =>{
@@ -42,24 +43,8 @@ const Home = () =>{
 
                 <div className="element left">
 
-                    <div className="illustrationWrapper">
-                        <div className="collaType">
-                            <h2 className="nameOfInstrument">DRUMS</h2>
-                        </div>
-                        <img className="arrow green" src={GreenArrow}/>
-                        <div className="collaType">
-                            <h2 className="nameOfInstrument">VOCALS</h2>
-                        </div>
-                        <img className="arrow pink" src={PinkArrow}/>
-                        <div className="collaType">
-                            <h2 className="nameOfInstrument">SYNTHS</h2>
-                        </div>
-                        <img className="arrow purple" src={PurpleArrow}/>
-
-                    </div>
-                    
                     <div className="padIntroContainer">
-                        <img className="record" src={padIntro}/>
+                        <img className="record" src={Illustration}/>
                     </div>
 
                 </div>

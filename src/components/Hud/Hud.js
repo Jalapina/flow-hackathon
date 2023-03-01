@@ -28,7 +28,7 @@ export default ({sessionOwner,isMinted, setIsLoading}) => {
     let editToggleMode = context.editMode ? '◀️' : <img style={{width:"65px"}} src={icon}/>;
     
     return(
-        <div className="hud-wrapper" style={{textAlign:"left", margin:"auto", width:"75%" , color: Colors.white, textAlign:"center"}}>
+        <div className="hud-wrapper" style={{textAlign:"left", margin:"auto", width:"45%" , color: Colors.white, textAlign:"center"}}>
 
             {/* {isLoaded? 
                 <div>

@@ -19,21 +19,16 @@ export default () => {
         }
         return(
             <div>
-                <div className="start-info">
-                    <p><strong>LOAD:</strong> WAV/MP3 samples</p>
-                    <p 
-                    style={{
-                        fontFamily: "monospace",
-                        fontSize: "10px",
-                        marginBottom: "35px"
-                    }}>metamask login only</p>
+                <div className="start-info" style={{fontFamily:"Simple",margin:"15px"}}>
+                    <p>WAV MP3 samples</p>
+                    <p>collaborate from everywhere</p>
                 </div>
                 <button 
                 className="btn"
                 style={{
                     color:"#fff",
                     background: "#818181",
-                    padding: "10px",
+                    padding: "8px",
                     margin: "auto"
                 }}
                 onClick={() => { setCTX(context)}}

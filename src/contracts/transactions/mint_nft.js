@@ -1,19 +1,16 @@
 export const mintNFT = `
-import MyNFT from 0x40582f87fa3d66cb
+import Sessions from 0x9a2479063c4c25bf
 
-transaction(ipfsHash: String, name: String) {
-
+transaction (url: String){
   prepare(acct: AuthAccount) {
-    let collection = acct.borrow<&MyNFT.Collection>(from: /storage/MyNFTCollection)
-                        ?? panic("This collection does not exist here")
-
-    let nft <- MyNFT.createToken(ipfsHash: ipfsHash, metadata: {"name": name})
-
-    collection.deposit(token: <- nft)
+  
+    acct.save(<-Sessions.createNFT(url: url), to: /storage/Sessions02)
+    acct.link<&Sessions.NFT{Sessions.NFTPublic}>(/public/BasicNFTPath, target: /storage/BasicNFTPath)
+  
   }
-
   execute {
-    log("A user minted an NFT into their account")
+    log("NFT Created!")
   }
 }
+
 `

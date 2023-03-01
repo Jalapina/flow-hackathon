@@ -106,8 +106,8 @@ const ProfileEditor = () =>{
                         </div>
                         <div className='specs'>
                             <h2>{userData ? userData.artistName: "Loading..."}</h2>
-                            <h4>Sessions: {sessions?sessions.length:"None"}</h4>
-                            <h4>collabs: 7</h4>
+                            <h4>Sessions: {sessions?sessions.length:"1"}</h4>
+                            <h4>collabs: 3</h4>
                         </div>
                 </div>
                 <div className="mainContentArea">

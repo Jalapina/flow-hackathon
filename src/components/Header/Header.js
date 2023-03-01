@@ -15,6 +15,22 @@ import firebase from 'firebase/compat/app';
 import {db} from '../../functions/firebase';
 import { useAuthState, useAuthDispatch } from "../../components/Auth/auth-context";
 
+fcl.config()
+.put("accessNode.api", "https://rest-testnet.onflow.org")
+.put("discovery.wallet", "https://fcl-discovery.onflow.org/testnet/authn")
+
+// fcl.config({  
+//     "discovery.wallet": "https://fcl-discovery.onflow.org/testnet/authn",
+//     "discovery.authn.endpoint": "https://fcl-discovery.onflow.org/api/testnet/authn"
+//   })
+//   .put("app.detail.title", "Sessions")
+//   .put("app.detail.icon", "https://firebasestorage.googleapis.com/v0/b/sessions-e4f78.appspot.com/o/apple-touch-icon.png?alt=media&token=054b8262-9a89-49d2-97e7-19f8dc3ebac3")
+//   .put("accessNode.api", "http://localhost:3000")
+//   .put("accessNode.api", "https://sessions-e4f78.web.app")
+//   .put("discovery.wallet", "http://localhost:8701/fcl/authn")
+//   .put("accessNode.api", "https://access-testnet.onflow.org")
+//   .put("discovery.wallet", "https://fcl-discovery.onflow.org/testnet/authn")
+  
 export default ({title,button}) => {
     
     const modalRef = useRef;

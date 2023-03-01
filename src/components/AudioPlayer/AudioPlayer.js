@@ -1,20 +1,20 @@
 import React from "react";
-import { Canvas } from '@react-three/fiber'
 import "./AudioPlayer.css";
 
-export const StandardModalHeader = (props) => {
+export default function AudioPlayer (props) {
     return(
-        <div className="AudioPlayer">
+        <div style={{
+            position: "fixed",
+            bottom: "0",
+            left: "0",
+            right: "0",
+            backgroundColor: "#000",
+            padding: "10px",
+            boxShadow: "0 -2px 5px rgb(0 0 0 / 25%)"
+        }} className="AudioPlayer">
             
             <div
-                style={{
-                height: 80,
-                display: "flex",
-                justifyContent: "space-around",
-                alignItems: "center",
-            }}>
-            
-                <input type="file" accept="audio/*" />
+                >
                 <audio controls style={{width:"50%"}}/>
             </div>
         </div>

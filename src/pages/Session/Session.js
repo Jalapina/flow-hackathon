@@ -1,4 +1,6 @@
 import React, {useState,useContext,useEffect,useRef} from 'react';
+import * as fcl from "@onflow/fcl"
+import * as t from "@onflow/types"
 import {Context} from '../../contexts/SamplerContext';
 import * as types from '../../reducers/types';
 import GridPad from '../../contexts/Config/PadGrid';
@@ -18,6 +20,9 @@ import { ethers } from 'ethers';
 import { Web3Provider } from '@ethersproject/providers';
 import { useCookies } from 'react-cookie';
 import INITIAL_STATE from '../../contexts/Config/AudioInitialState';
+import {mintNFT} from "../../contracts/transactions/mint_nft.js";
+
+fcl.config().put("accessNode.api", "https://rest-testnet.onflow.org").put("discovery.wallet", "https://fcl-discovery.onflow.org/testnet/authn")
 
 const Session = () =>{
 
@@ -143,44 +148,40 @@ const Session = () =>{
 
     }
 
-    const handleMint = async () =>{
+    const mint = async () =>{
+    
+        try{
+        const transactionID = await fcl.send([
+            fcl.transaction(mintNFT),
+            fcl.args([fcl.arg("https://sessions-e4f78.web.app/session/"+sessionID, fcl.t.String)]),
+            fcl.payer(fcl.authz),
+            fcl.proposer(fcl.authz),
+            fcl.authorizations([fcl.authz]),
+            fcl.limit(9999)
+          ]).then(fcl.decode)
 
-        if(window.ethereum){
-            
-            let tokenPrice = ethers.BigNumber.from('10000000000000000');
-            const provider = new ethers.providers.Web3Provider(window.ethereum)
-            const signer = provider.getSigner();
-            
-            let feeData = await signer.getFeeData();
-
-            await provider.send('eth_requestAccounts', []); 
-
-            const contract = new ethers.Contract(
-                "0x24426a17f5DFCb9c65329776465Cf8c5e6D9DD80", //polygon smart contract address
-                sessionContract.abi,
-                signer,
-            );
-
-            try{
-                const response = await contract.createNFT("https://sessions-e4f78.web.app/session/"+sessionID,tokenPrice,{value: ethers.utils.parseEther("0.01"),gasLimit: 5000000});
+            if(transactionID != undefined){
 
                 const sessionResponse = db.firestore().collection("session").doc(sessionID).update({
                     isMinted: true,
                     mintData: {
-                        contractHash: response.to,
-                        mintHash: response.hash
+                        contractHash: "0x9a2479063c4c25bf",
+                        mintHash: transactionID
                     }
                 });
-
+                
                 setSession({...session,minted:true});
-
+            }
+                console.log(transactionID)
+        
             }catch(e){console.log(e)}
-        }
+
 
     }
 
 
     return(
+
         <div className="sessionComponent">
 
             <Header title={"Sessions"} button={false}/>
@@ -250,13 +251,13 @@ const Session = () =>{
                 {isLoading?
                         "":
                     session.isMinted ?
-                    <div className="sessionNeedsContainer">
+                    <div className="isMinted">
                                             
                         <h3>
                             THIS SESSION IS MINTED ON THE CHAIN!
                         </h3>
-                        <a href={"https://mumbai.polygonscan.com/tx/"+session.mintData.mintHash}>
-                            POLYGON LINK
+                        <a href={"https://testnet.flowscan.org/transaction/"+session.mintData.mintHash+"/script"}>
+                            FLOWSCAN LINK
                         </a>
 
                         <h3>Session collaborators:</h3>
@@ -274,7 +275,7 @@ const Session = () =>{
                 {isLoading? "" : <Hud sessionOwner={session.address} setIsLoading={setIsLoading} isMinted={session.isMinted} />}
 
                 {user.user && session ?(
-                    user.user.addr == session.address && !session.isMinted ? <button className="mintButton"  onClick={handleMint}>mint</button>:""
+                    user.user.addr == session.address && !session.isMinted ? <button className="mintButton"  onClick={mint}>mint</button>:""
                 ):""
                 }
                 {isLoading ? "LOADING...." : rendercontent()}

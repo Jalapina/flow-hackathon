@@ -109,9 +109,9 @@ const Sessions = () =>{
                 JUMP IN
             </h1>
             <div style={{marginBottom:"90px", fontFamily:"Beary"}}> 
-                <p className="mantra">CREATE</p>
                 <p className="mantra">COLLAB</p>
-                <p className="mantra">ACTUALIZE </p>
+                <p className="mantra">CREATE</p>
+                <p className="mantra">SLEEP</p>
                 <p className="mantra">DISCOVER </p>
             </div>
 
