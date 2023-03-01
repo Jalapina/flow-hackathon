@@ -48,7 +48,6 @@
 .left{
     min-width: 400px;
     height: 375px;
-
 }
 .illustrationWrapper{
     position: relative;
@@ -59,20 +58,18 @@
     display: inline-block;
 }
 .padIntroContainer{
-    width: 50%;
+    width: 100%;
     display: inline-block;
     position: relative;
     height: 100%;
-    background: silver;
 }
 .padIntroContainer .record{
     position: absolute;
     right: 0px;
     left: 0px;
-    bottom: 17%;
-    width: 90%;
-    max-width: 270px;
+    width: 100%;
     margin: auto;
+    height: 102%;
 }
 .collaType{
     height: 33.3%;

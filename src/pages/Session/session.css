@@ -36,7 +36,14 @@
 }
 .sessionArt img{
     width: 250px;
+    height: 250px;
     /* min-width: 150px; */
+}
+.isMinted{
+    padding: 20px;
+    background: aquamarine;
+    color: #000;
+    font-family: 'Simple';
 }
 .sessionOptions{
     font-family: Simple;
@@ -47,8 +54,8 @@
 }
 .mintButton{
     margin: auto;
-    display: inline-block;
     width: 100%;
+    max-width: 685px;
     padding: 10px;
     font-size: 2em;
     font-family: 'Orbitron';

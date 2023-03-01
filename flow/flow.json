@@ -1,26 +1,31 @@
 {
 	"contracts": {
-		"Hellowor1d": "./HelloWorld.cdc"
+		"Sessions": "./Sessions.cdc"
 	},
 	"networks": {
 		"emulator": "127.0.0.1:3569",
-		"mainnet": "access.mainnet.nodes.onflow.org:9000",
 		"testnet": "access.devnet.nodes.onflow.org:9000"
 	},
 	"accounts": {
 		"emulator-account": {
-			"address": "0x7f7cc8a209e4d2d0",
+			"address": "7f7cc8a209e4d2d0",
 			"key": {
 				"type": "file",
 				"location": "jalapina.pkey"
+			}
+		},
+		"sessions": {
+			"address": "9a2479063c4c25bf",
+			"key": {
+				"type": "file",
+				"location": "sessions.pkey"
 			}
 		}
 	},
 	"deployments": {
 		"testnet": {
-			"emulator-account":
-			[
-				"Hellowor1d"
+			"emulator-account": [
+				"Sessions"
 			]
 		}
 	}

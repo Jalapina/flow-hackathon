@@ -20,7 +20,9 @@ import { ethers } from 'ethers';
 import { Web3Provider } from '@ethersproject/providers';
 import { useCookies } from 'react-cookie';
 import INITIAL_STATE from '../../contexts/Config/AudioInitialState';
-import {mintNFT} from "../../contracts/transactions/mint_nft";
+import {mintNFT} from "../../contracts/transactions/mint_nft.js";
+
+fcl.config().put("accessNode.api", "https://rest-testnet.onflow.org").put("discovery.wallet", "https://fcl-discovery.onflow.org/testnet/authn")
 
 const Session = () =>{
 
@@ -148,30 +150,38 @@ const Session = () =>{
 
     const mint = async () =>{
     
-        try {
-            
-            const transactionId = await fcl.send([
-                fcl.transaction(mintNFT),
-                fcl.args([
-                    fcl.arg("https://sessions-e4f78.web.app/session/"+sessionID, t.String),
-                    fcl.arg("session", t.String)
-                ]),
-                fcl.payer(fcl.currentUser),
-                fcl.proposer(fcl.currentUser),
-                fcl.authorizations([fcl.currentUser]),
-                fcl.limit(9999),
-            ]).then(fcl.decode);
+        try{
+        const transactionID = await fcl.send([
+            fcl.transaction(mintNFT),
+            fcl.args([fcl.arg("https://sessions-e4f78.web.app/session/"+sessionID, fcl.t.String)]),
+            fcl.payer(fcl.authz),
+            fcl.proposer(fcl.authz),
+            fcl.authorizations([fcl.authz]),
+            fcl.limit(9999)
+          ]).then(fcl.decode)
+
+            if(transactionID != undefined){
+
+                const sessionResponse = db.firestore().collection("session").doc(sessionID).update({
+                    isMinted: true,
+                    mintData: {
+                        contractHash: "0x9a2479063c4c25bf",
+                        mintHash: transactionID
+                    }
+                });
+                
+                setSession({...session,minted:true});
+            }
+                console.log(transactionID)
         
-            console.log(transactionId);
-            return fcl.tx(transactionId).onceSealed();
-        } 
-        catch(error) {
-            console.log("Error uploading file:", error);
-        }
+            }catch(e){console.log(e)}
+
+
     }
 
 
     return(
+
         <div className="sessionComponent">
 
             <Header title={"Sessions"} button={false}/>
@@ -241,13 +251,13 @@ const Session = () =>{
                 {isLoading?
                         "":
                     session.isMinted ?
-                    <div className="sessionNeedsContainer">
+                    <div className="isMinted">
                                             
                         <h3>
                             THIS SESSION IS MINTED ON THE CHAIN!
                         </h3>
-                        <a href={"https://mumbai.polygonscan.com/tx/"+session.mintData.mintHash}>
-                            POLYGON LINK
+                        <a href={"https://testnet.flowscan.org/transaction/"+session.mintData.mintHash+"/script"}>
+                            FLOWSCAN LINK
                         </a>
 
                         <h3>Session collaborators:</h3>
