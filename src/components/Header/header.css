@@ -2,6 +2,7 @@
     overflow: hidden;
     color: #ffffff;
     padding: 20px 15px 50px 15px;
+    background: linear-gradient(337deg, #191919, #8000d7);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -29,8 +30,8 @@
 }
 
 .artBackground{
-    background: url("./art.jpeg");
-    filter: opacity(0.5);
+    background-position: right;
+    filter: invert(1);
     position: absolute;
     width: 100%;
     left: 0;

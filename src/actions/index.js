@@ -135,7 +135,7 @@ export const updateSources = (context, file) => {
 
 export const handlePadTrigger = async(context, padId, velocity = 127) => {
         let selectedSource =  context.gridPadsArr[padId].source;
-        
+        console.log(context.gridPadsArr[padId])
         Tone.context.resume();
         
         

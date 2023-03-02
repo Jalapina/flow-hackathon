@@ -10,8 +10,12 @@ import PurpleArrow from "./purple-arrow.png";
 import PinkArrow from "./pink-arrow.png";
 import Illustration from "./illustration-sessions.png";
 import GreenArrow from "./green-arrow.png";
+import Wave from "./wave.png";
+import LogoWhite from "./logo-white.png";
 
 const Home = () =>{
+    const [index, setIndex] = useState(0);    
+    const names = ["Drums", "Reverd Vocals", "snare", "SYNTH BASS", "Piano in C#"];    
 
     const TEXTS = [
         "Collaborate",
@@ -22,16 +26,15 @@ const Home = () =>{
     const TEXTSPARAGRAPH = [
         "collaborate with friends and artist around the world",
         "create great music with anyone, anywhere",
-        "find the sound of the future",
-        "listen to others creations"
-      ];
+        "grow the catelogue of stems, and sample others to find the sound of the future",
+        "listen to what others are making and collab"
+    ];
 
-    const [index, setIndex] = useState(0);
-      
     useEffect(() => {
+        
         const intervalId = setInterval(() =>
           setIndex(index => index + 1),
-          3000 // every 3 seconds
+          6000 // every 3 seconds
         );
         return () => clearTimeout(intervalId);
       }, []);
@@ -50,9 +53,10 @@ const Home = () =>{
                 </div>
 
                 <div className="element right">
+
                     <div className="textAnimation">
                         <div className="animationwrapper">
-                            <TextTransition springConfig={presets.wobbly}>
+                            <TextTransition  delay={5000}  springConfig={presets.slow}>
                             <h2>
                                 {TEXTS[index % TEXTS.length]}
                             </h2>
@@ -64,6 +68,28 @@ const Home = () =>{
                     </div>
 
 
+                </div>
+
+                <div className="element bottom">
+                    <h3>Need help finishing a track ?</h3>
+
+                    <div className="stepOne">
+                        <p>upload your stems</p>
+                        <img src={Wave}/>
+                    </div>
+                    <div className="stepTwo">
+                        <h2>ask the community what you need</h2>
+                        <h3 style={{display:"inline-block",padding:"10px", testDecoration:"underline"}}> I'm looking for ...</h3>
+                        <div className="needsAnimation">
+                        <TextTransition  inline={true} delay={2} direction={"down"} springConfig={presets.stiff}>
+                            <h2>
+                                {names[index % names.length]}
+                            </h2>
+                            </TextTransition>
+                        </div>   
+                    </div>
+                    <p style={{padding:"30px"}}>watch the magic happen</p>
+                    <img style={{width:"10%", minWidth:"200px"}} src={LogoWhite}/>
                 </div>
 
             </div>
