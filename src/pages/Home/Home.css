@@ -1,14 +1,14 @@
 
 .intro{
     display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
+    align-content: center;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
+    flex-wrap: wrap;
 }
 .element{
     flex-grow: 2;
-    font-family: Beary;
+    font-family: Simple;
 }
 .right{
     text-align: center;
@@ -18,15 +18,41 @@
     overflow: hidden;
     background: #16161a;
 }
+.left{
+    width: 30%;
+    background: #16161a;
+    height: 375px;
+}
+.bottom{
+    width: 100%;
+    background: #16161a;
+    text-align: center;
+    padding: 35px 0px 35px 0px;
+}
+
+/* .right::after{
+    display: block;
+    background: #fff;
+    content: "";
+    width: 100px;
+    height: 102px;
+} */
+.stepOne {
+    margin-bottom: 60px;
+}
+
+.stepOne img{
+    width: 40%;
+}
 .textAnimation{
     position: relative;
     width: 100%;
-    left: 0;
+    left: -20px;
     right: 0;
     height: 100%;    
 }
 .textAnimation .animationwrapper h2{
-    font-family: 'Beary';
+    font-family: 'Simple';
     font-size: 2em;
     letter-spacing: 15px;
 }
@@ -40,15 +66,11 @@
     margin: auto;
     top: 45%;
     height: 5px;
-    background: violet;
 }
 .text-transition{
     margin-top: -35px;
 }
-.left{
-    min-width: 400px;
-    height: 375px;
-}
+
 .illustrationWrapper{
     position: relative;
     width: 50%;
@@ -66,8 +88,9 @@
 .padIntroContainer .record{
     position: absolute;
     right: 0px;
+    filter: hue-rotate(45deg);
     left: 0px;
-    width: 100%;
+    width: 80%;
     margin: auto;
     height: 102%;
 }
@@ -130,6 +153,20 @@
     padding: 0px 20px 0px 0px;
     font-family: Simple;
 }
+
+.needsAnimation {
+    display: inline-block;
+    margin-left: 28px;
+    width: 60px;
+    font-family: Simple;
+  }
+  
+  .needsAnimation h2{
+      background: #16161a;
+      padding: 5px;
+  }
+
+
 @media (max-width: 1125px) {
     .pink{      
         left: 80px;
@@ -140,21 +177,39 @@
     .animationwrapper{    
         width: 100%;
     }
+    .textAnimation{
+        left: 0;
+    }    
+    .padIntroContainer .record {
+        width: 95%;
+    }
+    .stepOne img{
+        width: 90%;
+    }
+    .needsAnimation {
+        display: block;
+        width: 100%;
+        margin: 25px auto;
+    }    
     
 }    
-/* #spin {
-    color:red;
+
+@keyframes scroll {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    10% {
+      transform: translateY(-50%);
+      opacity: 0.9;
+    }
+    90% {
+      transform: translateY(-50%);
+      opacity: 0.9;
+    }
+    100% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
   }
 
-\  #spin:after {
-    content:"";
-    animation: spin 5s linear infinite;
-  }
-
-  @keyframes spin {
-
-    0% { content:"collaborate"; }
-    10% { content:"innovate"; }
-    20% { content:"chop it up"; }
-    50% { content: "or"; }
-    90% { content: "pitch it down"; } */

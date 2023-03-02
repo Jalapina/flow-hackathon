@@ -38,8 +38,6 @@
     margin-bottom: 100px;
 }
 .backgroundSpec{
-    background: rgb(48 48 48);
-    /* background: url("../placeholder.png"); */
     position: absolute;
     width: 80%;
     left: -22px;

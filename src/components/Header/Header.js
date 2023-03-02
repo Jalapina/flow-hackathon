@@ -1,6 +1,6 @@
 import React,{useState,useRef} from 'react';
 import * as fcl from "@onflow/fcl"
-import logo from "../../pages/record.svg";
+import logo from "../../pages/Home/logo-white.png";
 import padIntro from "../../pages/padIntro.png";
 import "./header.css";
 import createButton from "./plus-sign.png";
@@ -160,7 +160,7 @@ export default ({title,button}) => {
             :
             <div className="buttonWrapepr">
                 <Link to="/">
-                    <img style={{width:"100px"}} src={padIntro}/>
+                    <img style={{width:"100px"}} src={logo}/>
                 </Link>
             </div>
         }

@@ -1,5 +1,6 @@
 import React, {useState,useContext,useEffect} from 'react';
 import { useOutletContext } from "react-router-dom";
+import ImagePalette from 'react-image-palette';
 import useImageColor from 'use-image-color'
 import Colors from '../../Config/ColorScheme';
 import midiMap from '../../Config/midiMap';
@@ -118,10 +119,12 @@ const Sessions = () =>{
             <div className="sessionsContainer">
                 {sessions?(
                     sessions.map((session,key)=>(
+                              <ImagePalette defaults crossOrigin={true} image={session.sessionArt}>
+                            {({ backgroundColor, color, alternativeColor }) => (
                         <div className="sessionHomeContainer">
-                            
-                            <div className="sessionSpecInfo">
-                                <div className="backgroundSpec">
+
+                            <div className="sessionSpecInfo" style={{background: backgroundColor,color: alternativeColor }}>
+                                <div className="backgroundSpec"  >
                                 </div>
                                 <Link to={"/session/"+session.id} style={{width:"50%",fontFamily:"Simple",order:"1"}}><h3 style={{fontSize:"3em"}}>{session.name}</h3></Link>
                                 <Link to={"/profile/"+session.address} style={{textDecoration:"none",fontSize:"1.2em",fontFamily:"Simple"}}><p style={{display:"block",order:"2"}} className="specs">ARTIST: {session.artist?session.artist:sliptAddressText(session.address)}</p></Link>
@@ -138,20 +141,21 @@ const Sessions = () =>{
                                         </p>
 
                                         {session.needs.length>0?(
-                                            session.needs.map(needItem =><p style={{display:"inline-block",margin:"10px",padding:"10px",background:"#000"}}>{needItem}</p> )
+                                            session.needs.map(needItem =><p style={{display:"inline-block",margin:"10px",padding:"10px",color:color,background:backgroundColor}}>{needItem}</p> )
                                         ):" N/A"}
                                     
                                     </div>
                                 }
-                            </div>
                             
                             <div className="sessionsItemArt">
                                 <Link to={"/session/"+session.id}><img style={{width:"100%"}} src={session.sessionArt? session.sessionArt:placeholder} /></Link>
                             </div>
 
-                            {/* {rendercontent(key)} */}
+                            </div>
 
                         </div>
+                        )}
+                            </ImagePalette>
                     ))
                     ):"Loading..."
                 }
