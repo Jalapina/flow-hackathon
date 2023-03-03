@@ -13,13 +13,16 @@
 /build
 .env
 # misc
-.DS_Store
 .env.local
+.DS_Store
+.firebase.json
 .env.development.local
 .env.test.local
 .env.production.local
-.firebase.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 session.json
+.github
+.firebase
+/extensions
