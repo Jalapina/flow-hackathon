@@ -1,11 +1,10 @@
 import React, {useState,useEffect,useContext,useRef,Fragment} from 'react';
-import { signInWithMoralis as signInWithMoralisByEvm } from '@moralisweb3/client-firebase-evm-auth';
 import * as fcl from "@onflow/fcl"
 import Header from '../../components/Header/Header';
 import "../Register/register.css"
 // import { httpsCallable } from '@firebase/functions';
 // import { User } from '@firebase/auth';
-import { auth, functions, moralisAuth } from '../../functions/firebase.js';
+import { auth, functions } from '../../functions/firebase.js';
 import { useNavigate } from "react-router-dom";
 import {db} from '../../functions/firebase';
 import WalletConnectProvider from '@walletconnect/web3-provider';
@@ -101,30 +100,6 @@ const Login = () =>{
     
   }
 
-  const signInWithMetamask = async() =>{
-        
-        let result = null
-
-        try {
-
-          dispatch({ status: "pending" });
-          result = await signInWithMoralisByEvm(moralisAuth);
-          const user = await userExist(result.credentials.user.addr);
-
-          dispatch({
-            status: "resolved",
-            user: result.credentials.user,
-            error: null
-          });
-
-          setCookie('user',result.credentials.user);
-          
-        } catch (error) {
-          dispatch({ status: "rejected", error });
-        }
-        
-  }
-    
   return(
         <div className="loginContainer">
 

@@ -1,13 +1,5 @@
 {
   "projects": {
     "default": "sessions-e4f78"
-  },
-  "targets": {},
-  "etags": {
-    "sessions-e4f78": {
-      "extensionInstances": {
-        "moralis-auth": "dbdcc1ea4a6eabf5ed7644dc09d6f93374a820871d90363492cf6b1916dfba90"
-      }
-    }
   }
-}
+  }

@@ -4,7 +4,6 @@ import 'firebase/compat/storage';
 import { initializeApp } from '@firebase/app';
 import { getAuth, browserSessionPersistence } from '@firebase/auth';
 import { connectFunctionsEmulator, getFunctions } from '@firebase/functions';
-import { getMoralisAuth } from '@moralisweb3/client-firebase-auth-utils';
 
 
 const firebaseConfig = {
@@ -26,6 +25,5 @@ if (typeof window !== undefined) {
 const db = firebaseApp;
 
 export const auth = getAuth(db);
-export const moralisAuth = getMoralisAuth(db);
 
 export {db};
